@@ -37,13 +37,12 @@ public class GameController : MonoBehaviour
     //public float moveSpeed;
 
     //NEW NEW CODE
-    /*
+    
     [SerializeField] private Text timerText;
     float currentTime = 0f;
-    float startingTime = 30f;
+    float startingTime = 0f;
 
-    */
-
+    
     private void Start()
     {
         gameOver = false;
@@ -52,7 +51,7 @@ public class GameController : MonoBehaviour
         gameOverText.text = "'N' For Normal Mode  'H' For Hard Mode";
        
         score = 0;
-        //currentTime = startingTime;
+        currentTime = startingTime;
         UpdateScore();
 
     }
@@ -110,17 +109,22 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        currentTime += 1 * Time.deltaTime;
+        timerText.text = currentTime.ToString("Time:"+"0.0");
 
         if (Input.GetKeyDown(KeyCode.N))
         {
             StartCoroutine(SpawnWaves());
             gameOverText.text = "";
+            currentTime += 1 * Time.deltaTime;
+            timerText.text = currentTime.ToString("Time:" + "0.0");
         }
 
         if (Input.GetKeyDown(KeyCode.H))
         {
             StartCoroutine(SpawnWavesHard());
             gameOverText.text = "";
+
         }
 
        /* if (Input.GetKeyDown(KeyCode.M))
